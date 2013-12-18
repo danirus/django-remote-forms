@@ -104,7 +104,8 @@ class RemoteDateInput(RemoteTimeInput):
             'data': [{'key': x, 'value': y} for (x, y) in MONTHS.items()]
         }, {
             'title': 'year',
-            'data': [{'key': x, 'value': x} for x in range(current_year - 100, current_year + 1)]
+            'data': [{'key': x, 'value': x} 
+                     for x in range(current_year - 100, current_year + 1)]
         }]
 
         return widget_dict

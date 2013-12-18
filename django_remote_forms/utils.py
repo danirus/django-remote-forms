@@ -1,5 +1,5 @@
 from django.utils.functional import Promise
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 
 
 def resolve_promise(o):
@@ -10,13 +10,13 @@ def resolve_promise(o):
         o = [resolve_promise(x) for x in o]
     elif isinstance(o, Promise):
         try:
-            o = force_unicode(o)
+            o = force_text(o)
         except:
             # Item could be a lazy tuple or list
             try:
                 o = [resolve_promise(x) for x in o]
             except:
-                raise Exception('Unable to resolve lazy object %s' % o)
+                raise Exception('Unable to resolve lazy object {0}'.format(o))
     elif callable(o):
             o = o()
 
